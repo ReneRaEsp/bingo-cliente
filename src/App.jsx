@@ -6,7 +6,7 @@ import './App.css';
 import Menu from "./views/Menu";
 import Cards from "./views/Cards";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
       <BrowserRouter>
