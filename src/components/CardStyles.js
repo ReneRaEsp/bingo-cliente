@@ -10,6 +10,7 @@ const CardDesign = styled.div`
     height: 27rem;
     border-radius: 12px;
     margin-top: 1.5rem;
+    cursor: pointer;
     .header {
       display: flex;
       background: none;
@@ -46,6 +47,29 @@ const CardDesign = styled.div`
             border: 2px solid black;
             height: 18.88%;
         }
+      }
+    }
+    .number {
+      position: relative;
+      top: 48px;
+      right: 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+    .select {
+      position: relative;
+      bottom: 10px;
+      .selectBtn {
+        width: 5rem;
+        height: 1.4rem;
+        background: rgba(23, 70, 163, .8);
+        border: none;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transform: scale(1.5);
       }
     }
   `;

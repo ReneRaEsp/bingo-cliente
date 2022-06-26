@@ -1,20 +1,24 @@
 import { useState, useEffect } from "react";
 import { CardDesign } from "./CardStyles";
 
-const Card = ({ card }) => {
+const Card = ({ card, isSelect, addCardToPlay }) => {
   const [column_b, setColumnB] = useState([]);
   const [column_i, setColumnI] = useState([]);
   const [column_n, setColumnN] = useState([]);
   const [column_g, setColumnG] = useState([]);
   const [column_o, setColumnO] = useState([]);
-  
-  useEffect(()=>{
-    setColumnB(card.column_b.split(','));
-    setColumnI(card.column_i.split(','));
-    setColumnN(card.column_n.split(','));
-    setColumnG(card.column_g.split(','));
-    setColumnO(card.column_o.split(','));
+
+  useEffect(() => {
+    setColumnB(card.column_b.split(","));
+    setColumnI(card.column_i.split(","));
+    setColumnN(card.column_n.split(","));
+    setColumnG(card.column_g.split(","));
+    setColumnO(card.column_o.split(","));
   }, [card]);
+
+  const handleClick = () => {
+    addCardToPlay(card);
+  }
 
   return (
     <CardDesign>
@@ -25,6 +29,7 @@ const Card = ({ card }) => {
         <div className="letter">G</div>
         <div className="letter">O</div>
       </div>
+      <div className="number">{card.id}</div>
       <div className="body">
         <div className="column">
           {column_b?.map(function (number, index) {
@@ -45,10 +50,10 @@ const Card = ({ card }) => {
           })}
         </div>
         <div className="column">
-          {column_n?.map(function (number, index ) {
+          {column_n?.map(function (number, index) {
             return (
               <div key={index} className="row">
-                {number}
+                {number == 0 ? "Free" : number}
               </div>
             );
           })}
@@ -72,6 +77,11 @@ const Card = ({ card }) => {
           })}
         </div>
       </div>
+      { isSelect &&
+      <div className="select">
+        <button onClick={handleClick} className="selectBtn">Select</button>
+      </div>
+      }
     </CardDesign>
   );
 };

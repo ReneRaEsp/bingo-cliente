@@ -5,6 +5,7 @@ const ListCards = styled.div`
     justify-content: space-evenly;
     flex-wrap: wrap;
     width: 100vw;
+    min-height: 100%;
     height: auto;
     background: rgba(20, 20, 70, .6);
 `;

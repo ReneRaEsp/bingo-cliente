@@ -1,196 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import useCards from "./../hooks/useCards";
 
 import Card from "./../components/Card";
 
 import { ListCards } from "./CardsStyles";
 
 const Cards = () => {
-  const [cards, setCards] = useState([
-    {
-      id: 1,
-      column_b: "9,11,13,3,8",
-      column_i: "24,16,23,25,28",
-      column_n: "32,33,0,31,38",
-      column_g: "47,57,55,59,46",
-      column_o: "67,66,65,68,61",
-      created_at: "2022-06-25T19:22:00.000000Z",
-      updated_at: "2022-06-25T19:22:00.000000Z",
-    },
-    {
-      id: 2,
-      column_b: "1,2,5,7,4",
-      column_i: "23,18,22,30,17",
-      column_n: "43,34,0,43,31",
-      column_g: "60,55,56,50,51",
-      column_o: "61,70,63,65,74",
-      created_at: "2022-06-25T19:22:01.000000Z",
-      updated_at: "2022-06-25T19:22:01.000000Z",
-    },
-    {
-      id: 3,
-      column_b: "5,9,7,2,11",
-      column_i: "23,29,28,20,16",
-      column_n: "32,40,0,44,38",
-      column_g: "58,60,59,53,56",
-      column_o: "70,64,61,69,73",
-      created_at: "2022-06-25T19:22:01.000000Z",
-      updated_at: "2022-06-25T19:22:01.000000Z",
-    },
-    {
-      id: 4,
-      column_b: "10,6,5,14,9",
-      column_i: "17,24,21,29,20",
-      column_n: "35,32,0,45,33",
-      column_g: "46,60,59,49,52",
-      column_o: "63,62,64,70,71",
-      created_at: "2022-06-25T19:22:02.000000Z",
-      updated_at: "2022-06-25T19:22:02.000000Z",
-    },
-    {
-      id: 5,
-      column_b: "11,14,10,6,1",
-      column_i: "26,23,29,25,17",
-      column_n: "35,43,0,34,42",
-      column_g: "50,57,56,51,56",
-      column_o: "63,69,73,65,70",
-      created_at: "2022-06-25T19:22:02.000000Z",
-      updated_at: "2022-06-25T19:22:02.000000Z",
-    },
-    {
-      id: 6,
-      column_b: "6,8,9,4,15",
-      column_i: "24,21,17,18,28",
-      column_n: "37,38,0,35,33",
-      column_g: "57,53,52,49,60",
-      column_o: "63,72,64,65,62",
-      created_at: "2022-06-25T19:22:03.000000Z",
-      updated_at: "2022-06-25T19:22:03.000000Z",
-    },
-    {
-      id: 7,
-      column_b: "14,4,9,15,8",
-      column_i: "23,24,19,27,21",
-      column_n: "34,40,0,41,33",
-      column_g: "49,57,55,60,52",
-      column_o: "61,65,67,66,69",
-      created_at: "2022-06-25T19:22:03.000000Z",
-      updated_at: "2022-06-25T19:22:03.000000Z",
-    },
-    {
-      id: 8,
-      column_b: "2,8,11,9,12",
-      column_i: "18,24,20,18,26",
-      column_n: "37,34,0,36,38",
-      column_g: "60,54,51,58,48",
-      column_o: "71,68,69,67,66",
-      created_at: "2022-06-25T19:22:04.000000Z",
-      updated_at: "2022-06-25T19:22:04.000000Z",
-    },
-    {
-      id: 9,
-      column_b: "7,3,2,4,5",
-      column_i: "26,24,17,30,27",
-      column_n: "43,42,0,45,35",
-      column_g: "54,56,50,49,57",
-      column_o: "74,62,72,61,73",
-      created_at: "2022-06-25T19:22:05.000000Z",
-      updated_at: "2022-06-25T19:22:05.000000Z",
-    },
-    {
-      id: 10,
-      column_b: "4,6,1,10,13",
-      column_i: "18,27,24,20,28",
-      column_n: "35,36,0,39,37",
-      column_g: "50,58,53,48,56",
-      column_o: "74,72,69,64,73",
-      created_at: "2022-06-25T19:22:06.000000Z",
-      updated_at: "2022-06-25T19:22:06.000000Z",
-    },
-    {
-      id: 11,
-      column_b: "10,2,9,12,13",
-      column_i: "22,30,28,19,26",
-      column_n: "37,40,0,39,36",
-      column_g: "48,47,50,52,53",
-      column_o: "64,62,68,70,72",
-      created_at: "2022-06-25T19:22:06.000000Z",
-      updated_at: "2022-06-25T19:22:06.000000Z",
-    },
-    {
-      id: 12,
-      column_b: "5,9,8,11,1",
-      column_i: "27,17,18,25,22",
-      column_n: "32,36,0,38,41",
-      column_g: "50,60,46,53,57",
-      column_o: "74,72,62,70,69",
-      created_at: "2022-06-25T19:22:07.000000Z",
-      updated_at: "2022-06-25T19:22:07.000000Z",
-    },
-    {
-      id: 13,
-      column_b: "14,2,5,8,1",
-      column_i: "29,26,21,17,18",
-      column_n: "44,41,0,35,38",
-      column_g: "56,51,54,57,60",
-      column_o: "70,63,71,64,74",
-      created_at: "2022-06-25T19:22:08.000000Z",
-      updated_at: "2022-06-25T19:22:08.000000Z",
-    },
-    {
-      id: 14,
-      column_b: "10,2,1,13,11",
-      column_i: "28,17,20,16,25",
-      column_n: "45,38,0,44,34",
-      column_g: "58,51,55,59,48",
-      column_o: "66,75,65,72,63",
-      created_at: "2022-06-25T19:22:08.000000Z",
-      updated_at: "2022-06-25T19:22:08.000000Z",
-    },
-    {
-      id: 15,
-      column_b: "4,12,9,15,6",
-      column_i: "19,27,23,18,16",
-      column_n: "36,42,0,33,45",
-      column_g: "49,55,59,58,48",
-      column_o: "64,66,68,65,63",
-      created_at: "2022-06-25T19:22:09.000000Z",
-      updated_at: "2022-06-25T19:22:09.000000Z",
-    },
-    {
-      id: 16,
-      column_b: "4,15,2,10,11",
-      column_i: "23,16,26,19,28",
-      column_n: "43,38,0,42,36",
-      column_g: "50,46,51,57,52",
-      column_o: "70,68,63,71,65",
-      created_at: "2022-06-25T19:22:10.000000Z",
-      updated_at: "2022-06-25T19:22:10.000000Z",
-    },
-    {
-      id: 17,
-      column_b: "5,8,15,14,2",
-      column_i: "19,30,28,24,16",
-      column_n: "42,33,0,36,43",
-      column_g: "49,54,57,47,55",
-      column_o: "67,61,72,71,63",
-      created_at: "2022-06-25T19:22:11.000000Z",
-      updated_at: "2022-06-25T19:22:11.000000Z",
-    },
-    {
-      id: 18,
-      column_b: "14,3,1,9,10",
-      column_i: "27,23,28,16,24",
-      column_n: "45,33,0,40,35",
-      column_g: "54,47,60,53,51",
-      column_o: "66,75,74,67,62",
-      created_at: "2022-06-25T19:22:11.000000Z",
-      updated_at: "2022-06-25T19:22:11.000000Z",
-    },
-  ]);
+  const { cards, listCards, addCardToPlay } = useCards();
+  
+  const isSelect = true;
+
+  useEffect(() => {
+    listCards();
+  }, []);
   return (
     <ListCards>
-      {cards.map((card) => {
-        return <Card key={card.id} card={card} />;
+      {cards?.map((card) => {
+        return <Card addCardToPlay={addCardToPlay} isSelect={isSelect} key={card.id} card={card} />;
       })}
     </ListCards>
   );
