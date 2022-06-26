@@ -1,6 +1,8 @@
+import Card from "./../components/Card";
+
 const Cards = () => {
     return (
-        <h2>Cards</h2>
+        <Card/>
     );
 }
 
