@@ -9,6 +9,7 @@ const CardDesign = styled.div`
     width: 25rem;
     height: 27rem;
     border-radius: 12px;
+    margin-top: 1.5rem;
     .header {
       display: flex;
       background: none;
