@@ -5,7 +5,7 @@ import useCards from "../hooks/useCards";
 import Card from "../components/Card";
 
 const GameBoard = () => {
-    const { playerCards } = useCards();
+  const { playerCards } = useCards();
   const Board = styled.div`
     display: flex;
     justify-content: center;
@@ -17,11 +17,9 @@ const GameBoard = () => {
 
   return (
     <Board>
-      {
-        playerCards?.map(card => {
-            <Card isSelect={isSelect} card={card} key={card.id} />
-        })
-      }
+      {playerCards?.map((card) => {
+        <Card isSelect={isSelect} card={card} key={card.id} />;
+      })}
     </Board>
   );
 };
