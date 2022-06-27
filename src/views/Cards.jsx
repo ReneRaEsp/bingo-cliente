@@ -1,20 +1,27 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+//router
 import { Link } from "react-router-dom";
-
+//redux
+import { fetchAllCards } from "../store/slices/cards";
+import { useDispatch, useSelector } from "react-redux";
+//hooks
 import useCards from "./../hooks/useCards";
-
+//components
 import Card from "./../components/Card";
-
+//styles
 import { ListCards } from "./CardsStyles";
 
 const Cards = () => {
-  const { cards, listCards, addCardToPlay } = useCards();
+  const { cards } = useSelector(state => state.cards);
+  const dispatch = useDispatch();
+  const { addCardToPlay } = useCards();
 
   const isSelect = true;
 
   useEffect(() => {
-    listCards();
-  }, []);
+    dispatch(fetchAllCards());
+  }, [dispatch]);
+
   return (
     <ListCards>
       {cards?.map((card) => {

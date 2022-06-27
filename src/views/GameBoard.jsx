@@ -1,24 +1,26 @@
-import styled from "@emotion/styled";
-
+import { useState } from "react";
+//redux
+import { useDispatch, useSelector } from "react-redux";
 import useCards from "../hooks/useCards";
-
+//components
 import Card from "../components/Card";
+//styles
+import { Board } from "./GameBoardStyles"; 
 
 const GameBoard = () => {
-  const { playerCards } = useCards();
-  const Board = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 40rem;
-    background: white;
-  `;
+  const { playerCards } = useSelector(state => state.cards);
+  const { addCardToPlay } = useCards();
+  const [number, setNumber] = useState(0);
+
   const isSelect = false;
 
   return (
     <Board>
+      <header className="banner">
+        <h2 className="number">Number Called: { number } </h2>
+      </header>
       {playerCards?.map((card) => {
-        <Card isSelect={isSelect} card={card} key={card.id} />;
+        return (<Card isSelect={isSelect} card={card} key={card.id} addCardToPlay={addCardToPlay} />)
       })}
     </Board>
   );

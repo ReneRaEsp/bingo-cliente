@@ -16,9 +16,11 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
     setColumnO(card.column_o.split(","));
   }, [card]);
 
-  const handleClick = () => {
-    addCardToPlay(card);
-  }
+
+    const handleClick = () => {
+      addCardToPlay(card);
+    };
+  
 
   return (
     <CardDesign>
@@ -77,11 +79,13 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
           })}
         </div>
       </div>
-      { isSelect &&
-      <div className="select">
-        <button onClick={handleClick} className="selectBtn">Select</button>
-      </div>
-      }
+      {isSelect && (
+        <div className="select">
+          <button onClick={handleClick} className="selectBtn">
+            Select
+          </button>
+        </div>
+      )}
     </CardDesign>
   );
 };
