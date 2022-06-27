@@ -5,6 +5,7 @@ import './App.css';
 
 import Menu from "./views/Menu";
 import Cards from "./views/Cards";
+import GameBoard from "./views/GameBoard";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={ <Menu /> } />
           <Route path="cards" element={ <Cards /> } />
+          <Route path="board" element={ <GameBoard /> } />
         </Routes>
       </BrowserRouter>
     </div>

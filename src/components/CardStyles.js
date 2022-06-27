@@ -33,7 +33,7 @@ const CardDesign = styled.div`
       background: white;
       width: 90%;
       height: 77%;
-      border: 4px solid black;
+      border: 4px solid rgba(27, 24, 57, .87);
       .column {
         width: 20%;
         height: 100%;
@@ -70,6 +70,10 @@ const CardDesign = styled.div`
         border-radius: 4px;
         cursor: pointer;
         transform: scale(1.5);
+        transition: 1s;
+        &:hover {
+          transform: scale(2);
+        }
       }
     }
   `;
