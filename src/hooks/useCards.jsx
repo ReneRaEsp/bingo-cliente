@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axios from "axios";
-import env from "react-dotenv";
 //redux
 import { setPlayerCards, addPlayerCard } from "./../store/slices/cards";
 import { useDispatch, useSelector } from "react-redux";

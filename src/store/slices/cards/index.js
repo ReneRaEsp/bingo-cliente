@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-import env from "react-dotenv";
 
 
 
@@ -28,7 +27,7 @@ export const { setCardList, setPlayerCards, addPlayerCard } = cardSlice.actions;
 export default cardSlice.reducer;
 
 export const fetchAllCards = () => (dispatch) => {
-  const URL_BASE = env.URL_BASE;
+  const URL_BASE = window.env.URL_BASE;
   console.log(URL_BASE);
   axios
     .get(`${URL_BASE}card`)
