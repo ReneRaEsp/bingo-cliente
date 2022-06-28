@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+
+import useCards from "../hooks/useCards";
+
 import { CardDesign } from "./CardStyles";
 
 const Card = ({ card, isSelect, addCardToPlay }) => {
+  const { markSquare, checkBingoCall } = useCards();
   const [column_b, setColumnB] = useState([]);
   const [column_i, setColumnI] = useState([]);
   const [column_n, setColumnN] = useState([]);
@@ -16,11 +20,17 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
     setColumnO(card.column_o.split(","));
   }, [card]);
 
+  const handleClick = () => {
+    addCardToPlay(card);
+  };
 
-    const handleClick = () => {
-      addCardToPlay(card);
-    };
-  
+  const handleClickMark = (number) => {
+    markSquare(card.id, number);
+  };
+
+  const handleCallBingo = (card) => {
+    checkBingoCall(card);
+  };
 
   return (
     <CardDesign>
@@ -36,8 +46,14 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
         <div className="column">
           {column_b?.map(function (number, index) {
             return (
-              <div key={index} className="row">
-                {number}
+              <div
+                onClick={() => {
+                  handleClickMark(number);
+                }}
+                key={index}
+                className={`row ${number < 0 ? "selected" : ""}`}
+              >
+                {Math.abs(number)}
               </div>
             );
           })}
@@ -45,8 +61,14 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
         <div className="column">
           {column_i?.map(function (number, index) {
             return (
-              <div key={index} className="row">
-                {number}
+              <div
+                onClick={() => {
+                  handleClickMark(number);
+                }}
+                key={index}
+                className={`row ${number < 0 ? "selected" : ""}`}
+              >
+                {Math.abs(number)}
               </div>
             );
           })}
@@ -54,8 +76,14 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
         <div className="column">
           {column_n?.map(function (number, index) {
             return (
-              <div key={index} className="row">
-                {number == 0 ? "Free" : number}
+              <div
+                onClick={() => {
+                  handleClickMark(number);
+                }}
+                key={index}
+                className={`row ${number <= 0 ? "selected" : ""}`}
+              >
+                {number == 0 ? "Free" : Math.abs(number)}
               </div>
             );
           })}
@@ -63,8 +91,14 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
         <div className="column">
           {column_g?.map(function (number, index) {
             return (
-              <div key={index} className="row">
-                {number}
+              <div
+                onClick={() => {
+                  handleClickMark(number);
+                }}
+                key={index}
+                className={`row ${number < 0 ? "selected" : ""}`}
+              >
+                {Math.abs(number)}
               </div>
             );
           })}
@@ -72,17 +106,29 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
         <div className="column">
           {column_o?.map(function (number, index) {
             return (
-              <div key={index} className="row">
-                {number}
+              <div
+                onClick={() => {
+                  handleClickMark(number);
+                }}
+                key={index}
+                className={`row ${number < 0 ? "selected" : ""}`}
+              >
+                {Math.abs(number)}
               </div>
             );
           })}
         </div>
       </div>
-      {isSelect && (
+      {isSelect ? (
         <div className="select">
           <button onClick={handleClick} className="selectBtn">
             Select
+          </button>
+        </div>
+      ) : (
+        <div className="select">
+          <button onClick={() => handleCallBingo(card)} className="selectBtn">
+            ¡¡¡Bingo!!!
           </button>
         </div>
       )}

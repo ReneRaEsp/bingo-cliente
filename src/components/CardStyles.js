@@ -47,18 +47,38 @@ const CardDesign = styled.div`
             border: 2px solid black;
             height: 18.88%;
         }
+        .selected {
+          background: rgba(40, 200, 240);
+        }
       }
     }
     .number {
       position: relative;
-      top: 48px;
-      right: 20px;
+      top: 4%;
+      right: 6%;
+      transform: translateX(100%);
       font-size: 1.2rem;
       font-weight: bold;
     }
     .select {
       position: relative;
       bottom: 10px;
+      .selectBtn {
+        width: 5rem;
+        height: 1.4rem;
+        background: rgba(23, 70, 163, .8);
+        border: none;
+        color: white;
+        font-size: 1rem;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+        transform: scale(1.5);
+        transition: 1s;
+        &:hover {
+          transform: scale(2);
+        }
+      }
       .selectBtn {
         width: 5rem;
         height: 1.4rem;

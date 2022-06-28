@@ -18,7 +18,7 @@ const ListCards = styled.div`
         transform: translate(0%, -50%);
         background: rgba(20, 120, 220, .9);
         border-radius: 0 20px 20px 0;
-        .text{
+        .text {
             color: white;
             font-weight: bold;
             font-size: 1.5rem;

@@ -14,12 +14,13 @@ import { ListCards } from "./CardsStyles";
 const Cards = () => {
   const { cards } = useSelector(state => state.cards);
   const dispatch = useDispatch();
-  const { addCardToPlay } = useCards();
+  const { addCardToPlay, resetGame } = useCards();
 
   const isSelect = true;
 
   useEffect(() => {
     dispatch(fetchAllCards());
+    resetGame();
   }, [dispatch]);
 
   return (
