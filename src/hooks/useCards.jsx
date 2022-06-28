@@ -1,11 +1,16 @@
 import { useState } from "react";
 import axios from "axios";
+import env from "react-dotenv";
 //redux
 import { setPlayerCards, addPlayerCard } from "./../store/slices/cards";
 import { useDispatch, useSelector } from "react-redux";
 
+
 export default function useCards() {
+ 
+  const URL_BASE = window.env.URL_BASE;
   const dispatch = useDispatch();
+  
   const { cards, playerCards } = useSelector((state) => state.cards);
 
   const [number, setNumber] = useState(0);
@@ -16,7 +21,7 @@ export default function useCards() {
 
   const callOutNumber = () => {
     axios
-      .post("http://127.0.0.1:8000/api/number")
+      .post(`${URL_BASE}number`)
       .then((res) => {
         setNumber(res.data);
       })
@@ -28,7 +33,7 @@ export default function useCards() {
     let i = 0;
 
     axios
-      .put(`http://127.0.0.1:8000/api/card/mark/${id}`, {
+      .put(`${URL_BASE}card/mark/${id}`, {
         number,
       })
       .then((res) => {
@@ -47,11 +52,11 @@ export default function useCards() {
 
   const resetGame = () => {
     axios
-      .delete("http://127.0.0.1:8000/api/number/1")
+      .delete(`${URL_BASE}number/1`)
       .then(console.log)
       .catch(console.log);
     axios
-      .get("http://127.0.0.1:8000/api/cards/reset")
+      .get(`${URL_BASE}cards/reset`)
       .then(console.log)
       .catch(console.log);
     dispatch(setPlayerCards([]));
@@ -59,7 +64,7 @@ export default function useCards() {
 
   const checkBingoCall = (card) => {
     axios
-      .get(`http://127.0.0.1:8000/api/card/check/${card.id}`)
+      .get(`${URL_BASE}card/check/${card.id}`)
       .then(res => {
         alert(res.data);
       })

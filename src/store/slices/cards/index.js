@@ -1,5 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import env from "react-dotenv";
+
+
 
 export const cardSlice = createSlice({
   name: "cards",
@@ -25,8 +28,10 @@ export const { setCardList, setPlayerCards, addPlayerCard } = cardSlice.actions;
 export default cardSlice.reducer;
 
 export const fetchAllCards = () => (dispatch) => {
+  const URL_BASE = env.URL_BASE;
+  console.log(URL_BASE);
   axios
-    .get("http://127.0.0.1:8000/api/card")
+    .get(`${URL_BASE}card`)
     .then((res) => {
       dispatch(setCardList(res.data));
     })
