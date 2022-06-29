@@ -4,13 +4,11 @@ import axios from "axios";
 import { setPlayerCards, addPlayerCard } from "./../store/slices/cards";
 import { useDispatch, useSelector } from "react-redux";
 
-
 export default function useCards() {
- 
   const URL_BASE = window.env.URL_BASE;
   const dispatch = useDispatch();
-  
-  const { cards, playerCards } = useSelector((state) => state.cards);
+
+  const { playerCards } = useSelector((state) => state.cards);
 
   const [number, setNumber] = useState(0);
 
@@ -50,21 +48,15 @@ export default function useCards() {
   };
 
   const resetGame = () => {
-    axios
-      .delete(`${URL_BASE}number/1`)
-      .then(console.log)
-      .catch(console.log);
-    axios
-      .get(`${URL_BASE}cards/reset`)
-      .then(console.log)
-      .catch(console.log);
+    axios.delete(`${URL_BASE}number/1`).then(console.log).catch(console.log);
+    axios.get(`${URL_BASE}cards/reset`).then(console.log).catch(console.log);
     dispatch(setPlayerCards([]));
   };
 
   const checkBingoCall = (card) => {
     axios
       .get(`${URL_BASE}card/check/${card.id}`)
-      .then(res => {
+      .then((res) => {
         alert(res.data);
       })
       .catch();
@@ -76,6 +68,6 @@ export default function useCards() {
     callOutNumber,
     markSquare,
     resetGame,
-    checkBingoCall
+    checkBingoCall,
   };
 }

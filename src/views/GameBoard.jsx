@@ -1,7 +1,6 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 //redux
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import useCards from "../hooks/useCards";
 //components
 import Card from "../components/Card";
