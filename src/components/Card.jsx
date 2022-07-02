@@ -83,7 +83,7 @@ const Card = ({ card, isSelect, addCardToPlay }) => {
                 key={index}
                 className={`row ${number <= 0 ? "selected" : ""}`}
               >
-                {number === 0 ? "Free" : Math.abs(number)}
+                {Math.abs(number) === 0 ? "Free" : Math.abs(number)}
               </div>
             );
           })}
